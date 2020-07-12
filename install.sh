@@ -53,4 +53,32 @@ else
   printf "Zsh already installed\n"
 fi
 
+printf "\n# --- APPLICATIONS --- #\n"
+printf "Adding homebrew/cask-versions to brew taps\n"
+brew tap homebrew/cask-versions
+
+applications=(
+  google-chrome
+  virtualbox
+  iterm2
+  vlc
+  visual-studio-code
+  slack
+  adoptopenjdk
+  intellij-idea-ce
+  zoomus
+  alacritty
+)
+
+for i in "${applications[@]}"; do
+  printf "Press y to install %s else press enter\n" "$i"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing %s\n" "$i";
+    brew cask install "$i"
+  else
+    printf "Skipped installing %s\n" "$i";
+  fi
+done
+
 
