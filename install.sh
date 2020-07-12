@@ -19,6 +19,9 @@ printf "Upgrading any already-installed formulae\n"
 brew upgrade
 printf "Upgrade Complete\n"
 
+printf "Exporting home brew no auto update\n"
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 printf "\n# --- GIT --- #\n"
 if test ! $(which git); then
   printf "Git is not installed. Would you like to install it? Press y to install else press enter\n"
@@ -31,4 +34,3 @@ if test ! $(which git); then
 else
   printf "Git already installed\n"
 fi
-
