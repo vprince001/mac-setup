@@ -1,6 +1,6 @@
 printf "\n# --- HOMEBREW --- #\n"
 if test ! $(which brew); then
-  printf "Homebrew is not installed. Would you like to install it? Press y to install else press enter\n"
+  printf "Homebrew is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
     printf "Installing homebrew...\n"
@@ -24,7 +24,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 printf "\n# --- GIT --- #\n"
 if test ! $(which git); then
-  printf "Git is not installed. Would you like to install it? Press y to install else press enter\n"
+  printf "Git is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
     printf "Installing git...\n"
@@ -37,7 +37,7 @@ fi
 
 printf "\n# --- ZSH --- #\n"
 if test ! $(which zsh); then
-  printf "Zsh is not installed. Would you like to install it? Press y to install else press enter\n"
+  printf "Zsh is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
     printf "Installing zsh and zsh-completions...\n"
@@ -71,14 +71,45 @@ applications=(
 )
 
 for i in "${applications[@]}"; do
-  printf "Press y to install %s else press enter\n" "$i"
+  printf "\n%s - Enter y to install else press enter\n" "$i"
   read -r response
   if [[ $response == "y" ]]; then
     printf "Installing %s\n" "$i";
     brew cask install "$i"
   else
-    printf "Skipped installing %s\n" "$i";
+    printf "Skipped %s\n" "$i";
   fi
 done
 
+printf "\n# --- CORE UTILS --- #\n"
+printf "Adding heroku/brew to brew taps\n"
+brew tap heroku/brew
 
+coreUtils=(
+    tig
+    tree
+    bat
+    node
+    watch
+    ack
+    hugo
+    heroku
+    autojump
+    scala
+    go
+    cmake
+    kubernetes-cli
+    tmux
+    minikube
+)
+
+for i in "${coreUtils[@]}"; do
+  printf "\n%s - Enter y to install else press enter\n" "$i"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing %s\n" "$i";
+    brew install "$i"
+  else
+    printf "Skipped %s\n" "$i";
+  fi
+done
