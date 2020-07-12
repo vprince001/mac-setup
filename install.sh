@@ -41,9 +41,9 @@ if test ! $(command -v zsh); then
   printf "Zsh is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing zsh and zsh-completions...\n"
-    brew install zsh zsh-completions
-    printf "Successfully installed zsh and zsh-completions\n"
+    printf "Installing zsh...\n"
+    brew install zsh
+    printf "Successfully installed zsh\n"
 
     printf "Installing oh-my-zsh\n"
     printf "Please enter your name to display in prompt\n"
@@ -139,6 +139,25 @@ npmModules=(
 )
 
 for i in "${npmModules[@]}"; do
+  printf "\n%s - Enter y to install else press enter\n" "$i"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing %s\n" "$i";
+    brew install "$i"
+  else
+    printf "Skipped %s\n" "$i";
+  fi
+done
+
+printf "\n# --- ZSH PLUGINS --- #\n"
+
+zshPlugins=(
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-completions
+)
+
+for i in "${zshPlugins[@]}"; do
   printf "\n%s - Enter y to install else press enter\n" "$i"
   read -r response
   if [[ $response == "y" ]]; then
