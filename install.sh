@@ -183,3 +183,32 @@ fi
 printf "Upgrading vim\n"
 brew upgrade vim
 printf "Upgrade Complete\n"
+
+printf "\n# --- VSCODE PLUGINS --- #\n"
+
+printf "Installing command_line_launcher\n"
+ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/code
+
+vscodePlugins=(
+    peterjausovec.vscode-docker
+    tootone.org-mode
+    esbenp.prettier-vscode
+    ms-mssql.mssql
+    patbenatar.advanced-new-file
+    coenraads.bracket-pair-colorizer
+    azemoh.one-monokai
+    formulahendry.auto-rename-tag
+    2gua.rainbow-brackets
+    pranaygp.vscode-css-peek
+)
+
+for i in "${vscodePlugins[@]}"; do
+  printf "\n%s - Enter y to install else press enter\n" "$i"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing %s\n" "$i";
+    code --install-extension "$i";
+  else
+    printf "Skipped %s\n" "$i";
+  fi
+done
