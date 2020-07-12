@@ -127,3 +127,24 @@ if [[ nvm -ne 0 ]]; then
 else
   printf "nvm already installed\n"
 fi
+
+printf "\n# --- NPM MODULES --- #\n"
+
+npmModules=(
+    nyc
+    readline-sync
+    mocha
+    prettier
+    chalk
+)
+
+for i in "${npmModules[@]}"; do
+  printf "\n%s - Enter y to install else press enter\n" "$i"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing %s\n" "$i";
+    brew install "$i"
+  else
+    printf "Skipped %s\n" "$i";
+  fi
+done
