@@ -1,5 +1,5 @@
 printf "\n# --- HOMEBREW --- #\n"
-if test ! $(which brew); then
+if test ! "$(command -v brew)"; then
   printf "Homebrew is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
@@ -23,7 +23,7 @@ printf "Exporting home brew no auto update\n"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 printf "\n# --- GIT --- #\n"
-if test ! $(which git); then
+if test ! $(command -v git); then
   printf "Git is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
@@ -36,7 +36,8 @@ else
 fi
 
 printf "\n# --- ZSH --- #\n"
-if test ! $(which zsh); then
+if test ! $(command -v zsh); then
+  echo $?
   printf "Zsh is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
@@ -113,3 +114,16 @@ for i in "${coreUtils[@]}"; do
     printf "Skipped %s\n" "$i";
   fi
 done
+
+printf "\n# --- NVM --- #\n"
+if [[ nvm -ne 0 ]]; then
+  printf "NVM is not installed. Press y to install else press enter\n"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing nvm...\n"
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+    printf "Successfully installed nvm\n"
+  fi
+else
+  printf "nvm already installed\n"
+fi
