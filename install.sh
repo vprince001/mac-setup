@@ -37,7 +37,6 @@ fi
 
 printf "\n# --- ZSH --- #\n"
 if test ! $(command -v zsh); then
-  echo $?
   printf "Zsh is not installed. Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
@@ -167,3 +166,20 @@ for i in "${zshPlugins[@]}"; do
     printf "Skipped %s\n" "$i";
   fi
 done
+
+printf "\n# --- VIM --- #\n"
+if test ! $(command -v vim); then
+  printf "Vim is not installed. Press y to install else press enter\n"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing vim...\n"
+    brew install vim
+    printf "Successfully installed vim\n"
+  fi
+else
+  printf "Vim already installed\n"
+fi
+
+printf "Upgrading vim\n"
+brew upgrade vim
+printf "Upgrade Complete\n"
