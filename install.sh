@@ -34,3 +34,23 @@ if test ! $(which git); then
 else
   printf "Git already installed\n"
 fi
+
+printf "\n# --- ZSH --- #\n"
+if test ! $(which zsh); then
+  printf "Zsh is not installed. Would you like to install it? Press y to install else press enter\n"
+  read -r response
+  if [[ $response == "y" ]]; then
+    printf "Installing zsh and zsh-completions...\n"
+    brew install zsh zsh-completions
+    printf "Successfully installed zsh and zsh-completions\n"
+
+    printf "Installing oh-my-zsh\n"
+    printf "Please enter your name to display in prompt\n"
+    read -r name
+    echo "$name" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  fi
+else
+  printf "Zsh already installed\n"
+fi
+
+
