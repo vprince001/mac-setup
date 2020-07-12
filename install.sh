@@ -1,34 +1,34 @@
-echo "# --- HOMEBREW --- #"
+printf "\n# --- HOMEBREW --- #\n"
 if test ! $(which brew); then
-  echo "Homebrew is not installed. Would you like to install it? Press y to install else press enter"
+  printf "Homebrew is not installed. Would you like to install it? Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
-    echo "Installing homebrew..."
+    printf "Installing homebrew...\n"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    echo "Successfully installed Homebrew"
+    printf "Successfully installed Homebrew\n"
   fi
 else
-  echo "Homebrew already installed"
+  printf "Homebrew already installed\n"
 fi
 
-echo "Making sure we're using the latest Homebrew"
+printf "Making sure we're using the latest Homebrew\n"
 brew update
-echo "Update Complete"
+printf "Update Complete\n"
 
-echo "Upgrading any already-installed formulae"
+printf "Upgrading any already-installed formulae\n"
 brew upgrade
-echo "Upgrade Complete"
-echo ""
+printf "Upgrade Complete\n"
 
-echo "# --- GIT --- #"
+printf "\n# --- GIT --- #\n"
 if test ! $(which git); then
-  echo "Git is not installed. Would you like to install it? Press y to install else press enter"
+  printf "Git is not installed. Would you like to install it? Press y to install else press enter\n"
   read -r response
   if [[ $response == "y" ]]; then
-    echo "Installing git..."
+    printf "Installing git...\n"
     brew install git
-    echo "Successfully installed git"
+    printf "Successfully installed git\n"
   fi
 else
-  echo "Git already installed"
+  printf "Git already installed\n"
 fi
+
