@@ -1,60 +1,72 @@
-printf "\n# --- HOMEBREW --- #\n"
+echo "
+# --- HOMEBREW --- #
+"
+
 if test ! "$(command -v brew)"; then
-  printf "Homebrew is not installed. Press y to install else press enter\n"
+  echo "Homebrew is not installed. Press y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing homebrew...\n"
+    echo "Installing homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    printf "Successfully installed Homebrew\n"
+    echo "Successfully installed Homebrew"
   fi
 else
-  printf "Homebrew already installed\n"
+  echo "Homebrew already installed"
 fi
 
-printf "Making sure we're using the latest Homebrew\n"
+echo "Making sure we're using the latest Homebrew"
 brew update
-printf "Update Complete\n"
+echo "Update Complete"
 
-printf "Upgrading any already-installed formulae\n"
+echo "Upgrading any already-installed formulae"
 brew upgrade
-printf "Upgrade Complete\n"
+echo "Upgrade Complete"
 
-printf "Exporting home brew no auto update\n"
+echo "Exporting home brew no auto update"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-printf "\n# --- GIT --- #\n"
+echo "
+# --- GIT --- #
+"
+
 if test ! $(command -v git); then
-  printf "Git is not installed. Press y to install else press enter\n"
+  echo "Git is not installed. Press y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing git...\n"
+    echo "Installing git..."
     brew install git
-    printf "Successfully installed git\n"
+    echo "Successfully installed git"
   fi
 else
-  printf "Git already installed\n"
+  echo "Git already installed"
 fi
 
-printf "\n# --- ZSH --- #\n"
+echo "
+# --- ZSH --- #
+"
+
 if test ! $(command -v zsh); then
-  printf "Zsh is not installed. Press y to install else press enter\n"
+  echo "Zsh is not installed. Press y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing zsh...\n"
+    echo "Installing zsh..."
     brew install zsh
-    printf "Successfully installed zsh\n"
+    echo "Successfully installed zsh"
 
-    printf "Installing oh-my-zsh\n"
-    printf "Please enter your name to display in prompt\n"
+    echo "Installing oh-my-zsh"
+    echo "Please enter your name to display in prompt"
     read -r name
     echo "$name" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   fi
 else
-  printf "Zsh already installed\n"
+  echo "Zsh already installed"
 fi
 
-printf "\n# --- APPLICATIONS --- #\n"
-printf "Adding homebrew/cask-versions to brew taps\n"
+echo "
+# --- APPLICATIONS --- #
+"
+
+echo "Adding homebrew/cask-versions to brew taps"
 brew tap homebrew/cask-versions
 
 applications=(
@@ -73,18 +85,21 @@ applications=(
 )
 
 for i in "${applications[@]}"; do
-  printf "\n%s - Enter y to install else press enter\n" "$i"
+  echo "$i - Enter y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing %s\n" "$i";
+    echo "Installing $i";
     brew cask install "$i"
   else
-    printf "Skipped %s\n" "$i";
+    echo "Skipped $i";
   fi
 done
 
-printf "\n# --- CORE UTILS --- #\n"
-printf "Adding heroku/brew to brew taps\n"
+echo "
+# --- CORE UTILS --- #
+"
+
+echo "Adding heroku/brew to brew taps"
 brew tap heroku/brew
 
 coreUtils=(
@@ -106,30 +121,35 @@ coreUtils=(
 )
 
 for i in "${coreUtils[@]}"; do
-  printf "\n%s - Enter y to install else press enter\n" "$i"
+  echo "$i - Enter y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing %s\n" "$i";
+    echo "Installing $i";
     brew install "$i"
   else
-    printf "Skipped %s\n" "$i";
+    echo "Skipped $i";
   fi
 done
 
-printf "\n# --- NVM --- #\n"
+echo "
+# --- NVM --- #
+"
+
 if [[ nvm -ne 0 ]]; then
-  printf "NVM is not installed. Press y to install else press enter\n"
+  echo "NVM is not installed. Press y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing nvm...\n"
+    echo "Installing nvm..."
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
-    printf "Successfully installed nvm\n"
+    echo "Successfully installed nvm"
   fi
 else
-  printf "nvm already installed\n"
+  echo "nvm already installed"
 fi
 
-printf "\n# --- NPM MODULES --- #\n"
+echo "
+# --- NPM MODULES --- #
+"
 
 npmModules=(
     nyc
@@ -140,17 +160,19 @@ npmModules=(
 )
 
 for i in "${npmModules[@]}"; do
-  printf "\n%s - Enter y to install else press enter\n" "$i"
+  echo "$i - Enter y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing %s\n" "$i";
+    echo "Installing $i";
     brew install "$i"
   else
-    printf "Skipped %s\n" "$i";
+    echo "Skipped $i";
   fi
 done
 
-printf "\n# --- ZSH PLUGINS --- #\n"
+echo "
+# --- ZSH PLUGINS --- #
+"
 
 zshPlugins=(
     zsh-autosuggestions
@@ -159,36 +181,41 @@ zshPlugins=(
 )
 
 for i in "${zshPlugins[@]}"; do
-  printf "\n%s - Enter y to install else press enter\n" "$i"
+  echo "$i - Enter y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing %s\n" "$i";
+    echo "Installing $i";
     brew install "$i"
   else
-    printf "Skipped %s\n" "$i";
+    echo "Skipped $i";
   fi
 done
 
-printf "\n# --- VIM --- #\n"
+echo "
+# --- VIM --- #
+"
+
 if test ! $(command -v vim); then
-  printf "Vim is not installed. Press y to install else press enter\n"
+  echo "Vim is not installed. Press y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing vim...\n"
+    echo "Installing vim..."
     brew install vim
-    printf "Successfully installed vim\n"
+    echo "Successfully installed vim"
   fi
 else
-  printf "Vim already installed\n"
+  echo "Vim already installed"
 fi
 
-printf "Upgrading vim\n"
+echo "Upgrading vim"
 brew upgrade vim
-printf "Upgrade Complete\n"
+echo "Upgrade Complete"
 
-printf "\n# --- VSCODE PLUGINS --- #\n"
+echo "
+# --- VSCODE PLUGINS --- #
+"
 
-printf "Installing command_line_launcher\n"
+echo "Installing command_line_launcher"
 ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/code
 
 vscodePlugins=(
@@ -205,22 +232,24 @@ vscodePlugins=(
 )
 
 for i in "${vscodePlugins[@]}"; do
-  printf "\n%s - Enter y to install else press enter\n" "$i"
+  echo "$i - Enter y to install else press enter"
   read -r response
   if [[ $response == "y" ]]; then
-    printf "Installing %s\n" "$i";
+    echo "Installing $i";
     code --install-extension "$i";
   else
-    printf "Skipped %s\n" "$i";
+    echo "Skipped $i";
   fi
 done
 
-printf "\n# --- UPDATE ZSHRC --- #\n"
+echo "
+# --- UPDATE ZSHRC --- #
+"
 
-printf "Enter y to update zshrc else press enter\n"
+echo "Enter y to update zshrc else press enter"
 read -r response
 if [[ $response == "y" ]]; then
-  printf "Adding zshrc settings\n"
+  echo "Adding zshrc settings"
   echo "
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -228,10 +257,11 @@ source $ZSH/oh-my-zsh.sh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
-printf "Please restart your terminal or enter 'source ~./zshrc' for changes to take effect"
+
+  echo "Please restart your terminal or enter 'source ~./zshrc' for changes to take effect"
 else
-  printf "Skipped updating zshrc\n";
+  echo "Skipped updating zshrc";
 fi
 
-printf "Installation completed\n"
-printf "Thank you\n"
+echo "Installation completed"
+echo "Thank you"
