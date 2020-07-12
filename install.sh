@@ -68,6 +68,8 @@ applications=(
   intellij-idea-ce
   zoomus
   alacritty
+  postman
+  docker
 )
 
 for i in "${applications[@]}"; do
@@ -212,3 +214,24 @@ for i in "${vscodePlugins[@]}"; do
     printf "Skipped %s\n" "$i";
   fi
 done
+
+printf "\n# --- UPDATE ZSHRC --- #\n"
+
+printf "Enter y to update zshrc else press enter\n"
+read -r response
+if [[ $response == "y" ]]; then
+  printf "Adding zshrc settings\n"
+  echo "
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+source $ZSH/oh-my-zsh.sh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+printf "Please restart your terminal or enter 'source ~./zshrc' for changes to take effect"
+else
+  printf "Skipped updating zshrc\n";
+fi
+
+printf "Installation completed\n"
+printf "Thank you\n"
