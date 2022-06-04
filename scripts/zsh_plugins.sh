@@ -4,15 +4,17 @@ echo "
 
 zshPlugins=(
     zsh-autosuggestions
-    zsh-syntax-highlighting
     zsh-completions
+    zsh-syntax-highlighting
 )
 
 for i in "${zshPlugins[@]}"; do
-  echo "$i - Enter y to install else press enter"
-  read -r response
+  echo "\nDo you want to install $i? [y/n/q]"
+  say "Do you want to install $i?"
+  read -r -n1 response
   if [[ $response == "y" ]]; then
-    echo "Installing $i";
+    echo "\nInstalling $i";
+    say "Installing $i";
     brew install "$i"
   else
     echo "Skipped $i";
