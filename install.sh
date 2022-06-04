@@ -21,4 +21,6 @@ source ./scripts/vscode_plugins.sh
 source ./scripts/zshrc.sh
 
 echo "Installation completed"
+say "Installation completed"
 echo "Thank you"
+say "Thank you"
