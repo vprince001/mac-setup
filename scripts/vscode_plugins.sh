@@ -19,12 +19,15 @@ vscodePlugins=(
 )
 
 for i in "${vscodePlugins[@]}"; do
-  echo "$i - Enter y to install else press enter"
-  read -r response
+  echo "Do you want to install $i? [y/n/q]"
+  say "Do you want to install this plugin?"
+  read -r -n1 response
   if [[ $response == "y" ]]; then
     echo "Installing $i";
     code --install-extension "$i";
+  elif [[ $response == "q" ]]; then
+    exit
   else
-    echo "Skipped $i";
+    echo "\nSkipped $i";
   fi
 done
