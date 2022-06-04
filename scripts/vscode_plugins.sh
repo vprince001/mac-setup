@@ -19,7 +19,7 @@ vscodePlugins=(
 )
 
 for i in "${vscodePlugins[@]}"; do
-  echo "Do you want to install $i? [y/n/q]"
+  echo "\nDo you want to install $i? [y/n/q]"
   say "Do you want to install this plugin?"
   read -r -n1 response
   if [[ $response == "y" ]]; then

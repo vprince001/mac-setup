@@ -2,10 +2,11 @@ echo "
 # --- UPDATE ZSHRC --- #
 "
 
-echo "Enter y to update zshrc else press enter"
-read -r response
+echo "\nDo you want to update zshrc? [y/n/q]"
+say "Do you want to update zshrc?"
+read -r -n1 response
 if [[ $response == "y" ]]; then
-  echo "Adding zshrc settings"
+  echo "\nAdding zshrc settings"
   echo "
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
