@@ -3,18 +3,11 @@ echo "
 "
 
 if test ! "$(command -v brew)"; then
-  echo "Homebrew is not installed. Do you want to install Homebrew? [y/n/q]"
-  say "Do you want to install Homebrew?"
-  read -r -n1 response
-  if [[ $response == "y" ]]; then
-    echo ""
-    echo "Installing homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    echo "Successfully installed Homebrew"
-    say "Successfully installed Homebrew"
-  elif [[ $response == "q" ]]; then
-    exit
-  fi
+  echo "Homebrew is not installed. Installing Homebrew"
+  say "Homebrew is not installed. Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  echo "Successfully installed Homebrew"
+  say "Successfully installed Homebrew"
 else
   echo "Homebrew already installed"
   echo "Making sure we're using the latest Homebrew"
