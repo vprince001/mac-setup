@@ -6,18 +6,18 @@ echo "Adding homebrew/cask-versions to brew taps"
 brew tap homebrew/cask-versions
 
 applications=(
-  google-chrome
-  virtualbox
-  iterm2
-  vlc
-  visual-studio-code
-  slack
   adoptopenjdk
-  intellij-idea-ce
-  zoomus
   alacritty
-  postman
   docker
+  google-chrome
+  intellij-idea-ce
+  iterm2
+  postman
+  slack
+  virtualbox
+  visual-studio-code
+  vlc
+  zoom
 )
 
 for i in "${applications[@]}"; do
@@ -27,7 +27,7 @@ for i in "${applications[@]}"; do
   if [[ $response == "y" ]]; then
     echo "\nInstalling $i";
     say "Installing $i";
-    brew cask install "$i"
+    brew install "$i" --cask
   elif [[ $response == "q" ]]; then
     exit
   else
