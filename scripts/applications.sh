@@ -21,12 +21,16 @@ applications=(
 )
 
 for i in "${applications[@]}"; do
-  echo "$i - Enter y to install else press enter"
-  read -r response
+  echo "\nDo you want to install $i? [y/n/q]"
+  say "Do you want to install $i?"
+  read -r -n1 response
   if [[ $response == "y" ]]; then
-    echo "Installing $i";
+    echo "\nInstalling $i";
+    say "Installing $i";
     brew cask install "$i"
+  elif [[ $response == "q" ]]; then
+    exit
   else
-    echo "Skipped $i";
+    echo "\nSkipped $i";
   fi
 done
