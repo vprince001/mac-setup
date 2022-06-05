@@ -14,6 +14,7 @@ coreUtils=(
     heroku
     hugo
     kubernetes-cli
+    lerna
     minikube
     node
     scala
@@ -21,6 +22,7 @@ coreUtils=(
     tmux
     tree
     watch
+    yarn
 )
 
 for i in "${coreUtils[@]}"; do
